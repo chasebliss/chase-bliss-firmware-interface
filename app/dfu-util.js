@@ -479,32 +479,6 @@ var device = null;
             );
         }
 
-        // vidField.addEventListener("change", function() {
-        //     vid = parseInt(vidField.value, 16);
-        // });
-
-        // transferSizeField.addEventListener("change", function() {
-        //     transferSize = parseInt(transferSizeField.value);
-        // });
-
-        // dfuseStartAddressField.addEventListener("change", function(event) {
-        //     const field = event.target;
-        //     let address = parseInt(field.value, 16);
-        //     if (isNaN(address)) {
-        //         field.setCustomValidity("Invalid hexadecimal start address");
-        //     } else if (device && device.memoryInfo) {
-        //         if (device.getSegment(address) !== null) {
-        //             device.startAddress = address;
-        //             field.setCustomValidity("");
-        //             dfuseUploadSizeField.max = device.getMaxReadSize(address);
-        //         } else {
-        //             field.setCustomValidity("Address outside of memory map");
-        //         }
-        //     } else {
-        //         field.setCustomValidity("");
-        //     }
-        // });
-
         connectButton.addEventListener('click', function() {
             if (device) {
                 device.close().then(onDisconnect);
@@ -546,76 +520,6 @@ var device = null;
                 });
             }
         });
-
-        // detachButton.addEventListener('click', function() {
-        //     if (device) {
-        //         device.detach().then(
-        //             async len => {
-        //                 let detached = false;
-        //                 try {
-        //                     await device.close();
-        //                     await device.waitDisconnected(5000);
-        //                     detached = true;
-        //                 } catch (err) {
-        //                     console.log("Detach failed: " + err);
-        //                 }
-
-        //                 onDisconnect();
-        //                 device = null;
-        //                 if (detached) {
-        //                     // Wait a few seconds and try reconnecting
-        //                     setTimeout(autoConnect, 5000);
-        //                 }
-        //             },
-        //             async error => {
-        //                 await device.close();
-        //                 onDisconnect(error);
-        //                 device = null;
-        //             }
-        //         );
-        //     }
-        // });
-
-        // uploadButton.addEventListener('click', async function(event) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        //     if (!configForm.checkValidity()) {
-        //         configForm.reportValidity();
-        //         return false;
-        //     }
-
-        //     if (!device || !device.device_.opened) {
-        //         onDisconnect();
-        //         device = null;
-        //     } else {
-        //         setLogContext(uploadLog);
-        //         clearLog(uploadLog);
-        //         try {
-        //             let status = await device.getStatus();
-        //             if (status.state == dfu.dfuERROR) {
-        //                 await device.clearStatus();
-        //             }
-        //         } catch (error) {
-        //             device.logWarning("Failed to clear status");
-        //         }
-
-        //         let maxSize = Infinity;
-        //         if (!dfuseUploadSizeField.disabled) {
-        //             maxSize = parseInt(dfuseUploadSizeField.value);
-        //         }
-
-        //         try {
-        //             const blob = await device.do_upload(transferSize, maxSize);
-        //             saveAs(blob, "firmware.bin");
-        //         } catch (error) {
-        //             logError(error);
-        //         }
-
-        //         setLogContext(null);
-        //     }
-
-        //     return false;
-        // });
 	
         bootloaderButton.addEventListener('click', async function(event) {
             event.preventDefault();
