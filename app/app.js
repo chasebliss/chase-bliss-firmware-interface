@@ -1,14 +1,4 @@
-// Generic Strings
 const root_url = "https://electro-smith.github.io/Programmer"
-
-// New changes involve reading from sources.json to find the 'sources' we should pull from
-// Those sources replace the previously hard coded 'examples.json' file, and should otherwise 
-// function the same.
-
-// The changes should primarily only affect gatherExampleData
-
-// When imported the examples will have the original data located in the .json file
-// as well as the 'source' field containing the data structure used to find the example
 
 var data = { 
     platforms: [],
@@ -23,70 +13,12 @@ var data = {
     displaySelectedFile: false
 }
 
-// Global Buffer for reading files
 var ex_buffer
 
-// Gets the root url
-// should be https://localhost:9001/Programmer on local
-// and https://electro-smith.github.io/Programmer on gh-pages
 function getRootUrl() {
     var url = document.URL;
     return url;
 }
-
-// Reads the specified file containing JSON example meta-data
-// function gatherExampleData()
-// {
-//     // Get Source list as data 
-//     var self = this // assign self to 'this' before nested function calls...
-//     var src_url = getRootUrl().concat("data/sources.json") 
-//     var raw = new XMLHttpRequest();
-//     raw.open("GET", src_url, true);
-//     raw.responseType = "text"
-//     raw.onreadystatechange = function ()
-//     {
-//         if (this.readyState === 4 && this.status === 200) {
-//             var obj = this.response; 
-//             buffer = JSON.parse(obj);
-//             buffer.forEach( function(ex_src) {
-//                 // Launch another request with async function to load examples from the 
-//                 // specified urls 
-//                 // This will fill examples directly, and replace the importExamples/timeout situation.
-//                 var ext_raw = new XMLHttpRequest();
-//                 ext_raw.open("GET", ex_src.data_url, true);
-//                 ext_raw.responseType = "text"
-//                 ext_raw.onreadystatechange = function ()
-//                 {
-//                     if (this.readyState === 4 && this.status === 200) {
-//                         // Now this.response will contain actual example data 
-//                         var ext_obj = this.response;
-//                         ex_buffer = JSON.parse(ext_obj);
-//                         // Now we could just fill the examples data
-//                         // ex_buffer.forEach( function(ex_data) {
-//                         //     console.log("%s - %s", ex_src.name, ex_data.name);
-//                         // })
-//                         const unique_platforms = [...new Set(ex_buffer.map(obj => obj.platform))]
-//                         // This needs to be fixed to 'ADD' examples
-//                         //self.examples = data
-//                         self.examples.push(ex_buffer)
-//                         var temp_platforms = self.platforms.push(unique_platforms)
-
-//                         const new_platforms = [...new Set(temp_platforms.map(obj => obj))]
-//                         self.platforms = new_platforms
-//                     }
-//                 }
-//                 ext_raw.send(null)
-
-//                     // var self = this
-//                     // const unique_platforms = [...new Set(data.map(obj => obj.platform))] 
-//                     // self.examples = data
-//                     // self.platforms = unique_platforms
-//             })
-//         }
-//     }
-//     raw.send(null)
-// }
-
 
 function displayReadMe(fname)
 {
