@@ -1,20 +1,14 @@
 var data = {
-    platforms: [],
-    examples: [],
-    no_device: true,
-    sel_platform: null,
-    sel_example: null,
-    firmwareFile: null,
-    blinkFirmwareFile: null,
-    bootloaderFirmwareFile: null,
-    displayImportedFile: false,
-    displaySelectedFile: false
-}
+  no_device: true,
+  sel_platform: null,
+  sel_example: null,
+  firmwareFile: null,
+  displaySelectedFile: false,
+};
 
 var app = new Vue({
-    el: '#app',
-    template:
-    `
+  el: "#app",
+  template: `
 <div class="app_body">
     <div align="center">
         <button id="detach" disabled="true" hidden="true">Detach DFU</button>
@@ -94,26 +88,26 @@ var app = new Vue({
 </div>
 
     `,
-    data: data,
-    watch: {
-        firmwareFile(newfile){
-            firmwareFile = null;
-            this.displaySelectedFile = true;
-            // Create dummy example struct
-            // This updates sel_example to enable the Program button when a file is loaded
-            var new_example = {
-                name: newfile.name,
-                description: "Imported File",
-                filepath: null,
-                platform: null
-            }
-            this.sel_example = new_example;
-            let reader = new FileReader();
-            reader.onload = function() {
-                this.firmwareFile = reader.result;
-                firmwareFile = reader.result;
-            }
-            reader.readAsArrayBuffer(newfile);
-        },
-    }
-})
+  data: data,
+  watch: {
+    firmwareFile(newfile) {
+      firmwareFile = null;
+      this.displaySelectedFile = true;
+      // Create dummy example struct
+      // This updates sel_example to enable the Program button when a file is loaded
+      var new_example = {
+        name: newfile.name,
+        description: "Imported File",
+        filepath: null,
+        platform: null,
+      };
+      this.sel_example = new_example;
+      let reader = new FileReader();
+      reader.onload = function () {
+        this.firmwareFile = reader.result;
+        firmwareFile = reader.result;
+      };
+      reader.readAsArrayBuffer(newfile);
+    },
+  },
+});
