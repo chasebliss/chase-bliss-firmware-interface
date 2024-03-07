@@ -1,31 +1,33 @@
 # Programmer
 
-WebUSB programmer for Daisy (and other DFU-compatible chips/boards).
+This repository hosts a WebUSB programmer designed for Daisy (and other DFU-compatible chips/boards). The project is largely inspired by the webdfu page set up for STM32F103 boards by devanlai, which you can find [here](https://github.com/devanlai/webdfu).
 
-Largely based on the webdfu page set up for STM32F103 boards made by devanlai:
-https://github.com/devanlai/webdfu -- https://devanlai.github.io/webdfu
+## Usage
 
-## Use
+The programmer facilitates flashing user-uploaded binary files or selecting from a pre-compiled list.
 
-The programmer can flash user-uploaded binary files or select from a pre-compiled list.
+To utilize the programmer locally, follow these steps:
 
-To use the programmer, go to this page:
+1. Clone this repository:
+   ```
+   git clone <repository_url>
+   ```
 
-[https://electro-smith.github.io/Programmer/](https://electro-smith.github.io/Programmer/)
+2. Navigate to the root directory of the cloned repository.
 
-and follow the on-page instructions.
+3. Install the `live-server` package globally if you haven't already:
+   ```
+   npm install -g live-server
+   ```
 
-## Local Test
+4. Run the `live-server` command to start the server:
+   ```
+   live-server
+   ```
 
-To set this app up on a local network, you can use the util/ folder resources.
+5. Access the local version of the programmer at the URL provided by `live-server`, usually:
+   ```
+   http://127.0.0.1:8080/
+   ```
 
-a run.sh script is included in the root level of the repo. 
-
-However, it is recommended that you run this script from one level outside of the Programmer folder so that the URL patterns are the same as when deployed on electro-smith.github.io
-
-The run script will start the server at `https://localhost:9001/`
-
-With the server started you can access the local version of the programmer at:
-
-[https://localhost:9001/Programmer](https://localhost:9001/Programmer)
-
+By following these instructions, you can easily set up and run the WebUSB programmer locally on your machine using `live-server`. Ensure to refer to any additional guidelines provided in the repository's documentation.

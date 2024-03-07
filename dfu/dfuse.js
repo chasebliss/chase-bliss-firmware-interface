@@ -1,5 +1,3 @@
-/* dfu.js must be included before dfuse.js */
-
 var dfuse = {};
 
 (function() {
@@ -16,7 +14,7 @@ var dfuse = {};
         if (settings.name) {
             this.memoryInfo = dfuse.parseMemoryDescriptor(settings.name);
         }
-    }
+    };
 
     dfuse.Device.prototype = Object.create(dfu.Device.prototype);
     dfuse.Device.prototype.constructor = dfuse.Device;
@@ -46,7 +44,7 @@ var dfuse = {};
             let startAddress = parseInt(contiguousSegmentMatch[1], 16);
             let segmentMatch;
             while (segmentMatch = segmentRegex.exec(contiguousSegmentMatch[0])) {
-                let segment = {}
+                let segment = {};
                 let sectorCount = parseInt(segmentMatch[1], 10);
                 let sectorSize = parseInt(segmentMatch[2]) * sectorMultipliers[segmentMatch[3]];
                 let properties = segmentMatch[4].charCodeAt(0) - 'a'.charCodeAt(0) + 1;
@@ -219,7 +217,7 @@ var dfuse = {};
         }
 
         this.logInfo("Erasing DFU device memory");
-        
+
         let bytes_sent = 0;
         let expected_size = data.byteLength;
 
@@ -244,7 +242,7 @@ var dfuse = {};
             try {
                 await this.dfuseCommand(dfuse.SET_ADDRESS, address, 4);
                 this.logDebug(`Set address to 0x${address.toString(16)}`);
-                bytes_written = await this.download(data.slice(bytes_sent, bytes_sent+chunk_size), 2);
+                bytes_written = await this.download(data.slice(bytes_sent, bytes_sent + chunk_size), 2);
                 this.logDebug("Sent " + bytes_written + " bytes");
                 dfu_status = await this.poll_until_idle(dfu.dfuDNLOAD_IDLE);
                 address += chunk_size;
@@ -276,7 +274,7 @@ var dfuse = {};
         } catch (error) {
             this.logError(error);
         }
-    }
+    };
 
     dfuse.Device.prototype.do_upload = async function(xfer_size, max_size) {
         let startAddress = this.startAddress;
@@ -298,5 +296,5 @@ var dfuse = {};
         // DfuSe encodes the read address based on the transfer size,
         // the block number - 2, and the SET_ADDRESS pointer.
         return await dfu.Device.prototype.do_upload.call(this, xfer_size, max_size, 2);
-    }
+    };
 })();
