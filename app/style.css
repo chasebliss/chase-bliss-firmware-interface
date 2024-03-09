@@ -1,0 +1,272 @@
+/* 1. Use a more-intuitive box-sizing model. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Add accessible line-height and 4. Improve text rendering */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Remove built-in form typography styles */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Create a root stacking context */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+body {
+  padding: 0 7vw;
+  font-family: "Poppins", sans-serif !important;
+  background-color: #fefbf6;
+  background-image: linear-gradient(#f1e8dc 1px, transparent 1px),
+    linear-gradient(90deg, #f1e8dc 1px, transparent 1px),
+    linear-gradient(#f1e8dc 0.5px, transparent 0.5px),
+    linear-gradient(90deg, #f1e8dc 0.5px, #fefbf6 0.5px);
+  background-size:
+    80px 80px,
+    80px 80px,
+    16px 16px,
+    16px 16px;
+  background-position:
+    -1px -1px,
+    -1px -1px,
+    -0.5px -0.5px,
+    -0.5px -0.5px;
+}
+
+body.dark-mode {
+  background-color: #121212; /* Dark background color */
+  background-image: linear-gradient(#2c2c2c 1px, transparent 1px),
+    linear-gradient(90deg, #2c2c2c 1px, transparent 1px),
+    linear-gradient(#2c2c2c 0.5px, transparent 0.5px),
+    linear-gradient(90deg, #2c2c2c 0.5px, #121212 0.5px);
+  color: #e0e0e0; /* Lighter text color for readability */
+}
+
+.app_body {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.accordian-btn {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  font-w: bold;
+}
+
+.h1 {
+  background: #fefbf6;
+  border: 2px solid black;
+  width: fit-content;
+  font-weight: bold;
+  font-size: calc((2 - 1) * 1.2vw + 1rem);
+  padding: 20px 40px;
+}
+
+button,
+label {
+  background: #fefbf6 !important;
+  border: 2px solid black;
+  min-width: 200px;
+  width: fit-content;
+  padding: 10px !important;
+  font-weight: bold !important;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.accordian-window {
+  border: 1px solid black;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+#mobileWarning {
+  display: none;
+}
+
+@media (max-width: 414px) {
+  .app_body > *:not(#mobileWarning) {
+    display: none; /* Hide everything except the warning */
+  }
+
+  #mobileWarning {
+    display: block; /* Show the warning */
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+  }
+}
+
+.warning {
+  z-index: 100;
+}
+
+.a-file {
+  position: relative;
+  display: inline-block;
+  text-decoration: none; /* Removes underline */
+  z-index: 20;
+  overflow: hidden; /* Ensures pseudo-element is contained */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.back-to-site svg {
+  transition: transform 0.3s; /* Smooth movement transition for the SVG */
+}
+
+.back-to-site:hover svg {
+  transform: translateX(-5px); /* Move the SVG to the left on hover */
+}
+
+.a-file::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 204, 0.3),
+    rgba(51, 51, 153, 0.3),
+    rgba(0, 255, 204, 0.3)
+  ); /* 80's neon gradient */
+  z-index: -1;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s; /* Smooth fade-in effect */
+}
+
+.a-file:hover::before {
+  opacity: 1; /* Reveals the gradient on hover */
+}
+
+.a-file:hover {
+  color: black; /* Changes text color on hover for better visibility */
+}
+
+.device-select:hover p {
+  font-weight: bold;
+}
+
+#downloadLog {
+  font-family: monospace;
+  width: 385px;
+}
+
+progress {
+  /* Size */
+  width: 385px;
+  margin-top: 8px;
+  height: 56px;
+  border: 1px solid black;
+  /* Colors and appearance */
+  background-color: #fefbf6;
+
+  /* Remove default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #fefbf6;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+progress::-webkit-progress-value {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 0, 204, 1),
+    rgba(51, 51, 153, 1),
+    rgba(0, 255, 204, 1)
+  );
+  opacity: 0.5;
+
+  animation: progress-animation 2s linear infinite;
+}
+
+progress::-moz-progress-bar {
+  border-radius: 8px;
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 0, 204, 1),
+    rgba(51, 51, 153, 1),
+    rgba(0, 255, 204, 1)
+  );
+  opacity: 0.2;
+  animation: progress-animation 2s linear infinite;
+}
+
+.pulse-animation {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes progress-animation {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100px 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
