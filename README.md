@@ -1,4 +1,4 @@
-# Programmer
+# Bliss Programmer
 
 This repository hosts a WebUSB programmer designed for Daisy (and other DFU-compatible chips/boards). The project is largely inspired by the webdfu page set up for STM32F103 boards by devanlai, which you can find [here](https://github.com/devanlai/webdfu).
 
